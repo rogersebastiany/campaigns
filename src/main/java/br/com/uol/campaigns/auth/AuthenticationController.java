@@ -37,6 +37,5 @@ public class AuthenticationController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Wrong password");
             }
         }
-
     }
 }

@@ -18,13 +18,25 @@ public class TokenService {
     @Value("${api.security.token.secret}")
     private String secret;
 
+//    public String generateToken(UserModel userModel) {
+//        try {
+//            var algorithm = Algorithm.HMAC256(secret);
+//            return JWT.create()
+//                    .withIssuer("Campaigns API")
+//                    .withSubject(userModel.getUsername())
+//                    .withExpiresAt(getExpirationDate())
+//                    .sign(algorithm);
+//        } catch (JWTCreationException exception){
+//            throw new RuntimeException("Error generating JWT", exception);
+//        }
+//    }
+
     public String generateToken(UserModel userModel) {
         try {
             var algorithm = Algorithm.HMAC256(secret);
             return JWT.create()
-                    .withIssuer("API Todolist")
+                    .withIssuer("auth0")
                     .withSubject(userModel.getUsername())
-                    .withExpiresAt(getExpirationDate())
                     .sign(algorithm);
         } catch (JWTCreationException exception){
             throw new RuntimeException("Error generating JWT", exception);
@@ -35,11 +47,12 @@ public class TokenService {
         try {
             var algorithm = Algorithm.HMAC256(secret);
             return JWT.require(algorithm)
-                    .withIssuer("API Todolist")
+                    .withIssuer("auth0")
                     .build()
                     .verify(tokenJWT)
                     .getSubject();
         } catch (JWTVerificationException exception) {
+            System.out.println(exception.getMessage());
             throw new RuntimeException("Invalid or expired JWT");
         }
     }
