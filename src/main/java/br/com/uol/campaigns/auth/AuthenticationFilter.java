@@ -3,18 +3,15 @@ package br.com.uol.campaigns.auth;
 import br.com.uol.campaigns.service.TokenService;
 import br.com.uol.campaigns.user.IUserRepository;
 import br.com.uol.campaigns.user.UserModel;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StreamUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.Map;
 
 @Component
 public class AuthenticationFilter extends OncePerRequestFilter {
@@ -30,6 +27,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 
         var servletPath = request.getServletPath();
 
+        // simples filtro de rota
         if (servletPath.startsWith("/campanhas")){
             var auth = request.getHeader("Authorization");
 
