@@ -11,4 +11,4 @@ To install on your machine, follow this steps:
   * make sure that the .env file is present and change it the way you prefer
   * run ``docker-compose up -d``
   * if necessary, change the database target at resources/.../application.propperties
-  * start the project!
+* start the project!
