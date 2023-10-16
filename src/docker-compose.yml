@@ -1,9 +1,6 @@
 services:
   postgres:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: "postgres"
+    image: postgres
     container_name: ${PG_CONTAINER_NAME}
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
@@ -13,7 +10,7 @@ services:
     volumes:
       - campaigns:/data/campaigns
     ports:
-      - "5433:5432"
+      - "5432:5432"
     restart: unless-stopped
 volumes:
   campaigns:
